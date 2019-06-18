@@ -82,8 +82,11 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 	},
 
 	_isFloating: function( item ) {
-		return ( /left|right/ ).test( item.css( "float" ) ) ||
-			( /inline|table-cell/ ).test( item.css( "display" ) );
+		return ( /left|right/ ).test( item.css( "float" )) ||
+			( /inline|table-cell/ ).test( item.css( "display" )) ||
+			(
+				( /flex/ ).test( item.parent().css( "display" )) && ( /row|row-reverse/ ).test( item.parent().css( "flex-direction" ) )
+			)
 	},
 
 	_create: function() {
